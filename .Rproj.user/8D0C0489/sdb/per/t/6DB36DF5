@@ -1,0 +1,16 @@
+{
+    "contents" : "require(\"ggplot2\")\n\n#d <- read.delim(\"/Volumes/Lothlorien/Dropbox/sandbox/clia/diagnose.cds.tbl\")\n#d <- read.delim(\"/Volumes/Lothlorien/Dropbox/sandbox/clia/untargeted.tbl\")\nd <- read.delim(\"/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/cancer/cancer.tbl\")\n\n\nqplot(AVG_INTERVAL_DP/12, data=d, geom=\"density\", fill=\"red\", xlab=\"Average depth per sample\", ylab=\"% targets\") + geom_vline(xintercept=20, linetype=\"dashed\") + scale_fill_discrete(guide = \"none\")\nqplot(FILTER, data=subset(d, FILTER != \"PASS\")) + theme(axis.text.x = element_text(angle=90, hjust=1))\n\nuncovered <- function(d, t) {\n  length(d[d$AVG_INTERVAL_DP/12 < t,]$POS) / length(d$POS)\n}",
+    "created" : 1365004543202.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "238806079",
+    "id" : "6DB36DF5",
+    "lastKnownWriteTime" : 1365183661,
+    "path" : "/Volumes/Lothlorien/Dropbox/src/tdplots/clia_truseq_coverage_analysis.r",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

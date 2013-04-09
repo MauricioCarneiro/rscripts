@@ -1,0 +1,9 @@
+{
+    "path" : "~/src/tdplots",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

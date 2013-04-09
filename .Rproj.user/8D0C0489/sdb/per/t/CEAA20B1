@@ -1,0 +1,21 @@
+{
+    "contents" : "",
+    "created" : 1365007352948.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CEAA20B1",
+    "lastKnownWriteTime" : 493921239040,
+    "path" : null,
+    "properties" : {
+        "caption" : "u",
+        "contentUrl" : "content?title=u&file=174c4004782f4884be51b37e0424a0bb.htm",
+        "displayedObservations" : 121,
+        "displayedVariables" : 5,
+        "totalObservations" : 121,
+        "variables" : 5
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

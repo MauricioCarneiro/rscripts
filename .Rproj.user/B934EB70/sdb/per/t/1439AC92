@@ -1,0 +1,15 @@
+{
+    "contents" : "require(\"ggplot2\")\n\n\nuncovered <- function(data, t) {\n  data_points = length(data$POS)\n  percent_uncovered <- length(data[data$AVG_INTERVAL_DP/12 < t,]$POS) / data_points\n  cat(percent_uncovered, percent_uncovered * data_points)\n}\n\n## individual datasets\n\noriginal <- read.delim(\"/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/cds/\n#d <- read.delim(\"/Volumes/Lothlorien/Dropbox/sandbox/clia/untargeted.tbl\")\n#d <- read.delim(\"/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/cancer/cancer.tbl\")\n\nqplot(AVG_INTERVAL_DP/12, data=d, geom=\"density\", fill=\"red\", xlab=\"Average depth per sample\", ylab=\"% targets\") + geom_vline(xintercept=20, linetype=\"dashed\") + scale_fill_discrete(guide = \"none\")\nqplot(FILTER, data=subset(d, FILTER != \"PASS\")) + theme(axis.text.x = element_text(angle=90, hjust=1))\n\n\n## downsampled datasets\nd <- cbind(\"10%\", read.delim(\"/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/downsample/down-0.1/GeneTest-transcripts-130221.intervals.vcf.tbl\"))\nnames(d) <- c(\"dataset\", names(d)[-1])\n\ntmp <- cbind(\"20%\", read.delim(\"/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/downsample/down-0.2/GeneTest-transcripts-130221.intervals.vcf.tbl\")) \nnames(tmp) <- names(d)\nd <- rbind(d, tmp)\n\ntmp <- cbind(\"30%\", read.delim(\"/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/downsample/down-0.3/GeneTest-transcripts-130221.intervals.vcf.tbl\")) \nnames(tmp) <- names(d)\nd <- rbind(d, tmp)\n\ntmp <- cbind(\"40%\", read.delim(\"/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/downsample/down-0.4/GeneTest-transcripts-130221.intervals.vcf.tbl\")) \nnames(tmp) <- names(d)\nd <- rbind(d, tmp)\n\ntmp <- cbind(\"50%\", read.delim(\"/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/downsample/down-0.5/GeneTest-transcripts-130221.intervals.vcf.tbl\")) \nnames(tmp) <- names(d)\nd <- rbind(d, tmp)\n\nuncovered(d=subset(d, dataset==\"10%\"), 20)\nuncovered(d=subset(d, dataset==\"20%\"), 20)\nuncovered(d=subset(d, dataset==\"30%\"), 20)\nuncovered(d=subset(d, dataset==\"40%\"), 20)\nuncovered(d=subset(d, dataset==\"50%\"), 20)\n\nqplot(AVG_INTERVAL_DP/12, data=d, geom=\"density\", fill=dataset, alpha=0.2, group=dataset, xlab=\"Average depth per sample\", ylab=\"% targets\") + geom_vline(xintercept=20, linetype=\"dashed\") + scale_alpha(guide=\"none\")\n",
+    "created" : 1365039994737.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1688309760",
+    "id" : "1439AC92",
+    "lastKnownWriteTime" : 1365390895,
+    "path" : "~/Dropbox/src/tdplots/clia_truseq_coverage_analysis.r",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
