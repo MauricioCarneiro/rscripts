@@ -1,7 +1,0 @@
-{
-    "installOptions" : {
-        "installDependencies" : true,
-        "installFromRepository" : true,
-        "libraryPath" : "/home/carneiro/R/x86_64-unknown-linux-gnu-library/2.15"
-    }
-}
