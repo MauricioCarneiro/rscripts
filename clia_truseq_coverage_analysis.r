@@ -22,13 +22,26 @@ load_downsampled_datasets = function (filename) {
 
 
 ## individual datasets
-
-original <- read.delim("/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/cds/master_cds_gencodeV15.intervals.tbl")
+pre <- read.delim("/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/cds/no_mito_master_cds_gencodeV15.intervals.tbl")
+original <- read.delim("/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/cds/master_cds_gencodeV15.intervals.d1.0.vcf.tbl")
 cser <- read.delim("/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/cser-genetest/GeneTest-transcripts-130221.intervals.vcf.tbl")
 canseq <- read.delim("/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/cancer/canseq_genes.tbl")
+ffpe <- read.delim("/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/ffpe/master_cds_gencodeV15.intervals.d1.0.vcf.tbl")
+tissue_cells <- read.delim("/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/tissue_cells/master_cds_gencodeV15.intervals.d1.0.vcf.tbl")
+trio <- read.delim("/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/trio/master_cds_gencodeV15.intervals.d1.0.vcf.tbl")
+tumor <- read.delim("/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/tumor_normal/master_cds_gencodeV15.intervals.d1.0.vcf.tbl")
+normal <- read.delim("/humgen/gsa-hpprojects/dev/carneiro/clia/analysis/illumina_exome/tumor_normal/normal/master_cds_gencodeV15.intervals.d1.0.vcf.tbl")
 
-qplot(AVG_INTERVAL_DP/12, data=original, geom="density", fill="red", xlab="Average depth per sample", ylab="% targets") + geom_vline(xintercept=20, linetype="dashed") + scale_fill_discrete(guide = "none")
-qplot(FILTER, data=subset(d, FILTER != "PASS")) + theme(axis.text.x = element_text(angle=90, hjust=1))
+
+dx <- original
+nsamples <- 2
+median(dx$AVG_INTERVAL_DP/nsamples)
+uncovered(dx, 20)
+uncovered(dx, 20) * 72072
+qplot(AVG_INTERVAL_DP/nsamples, data=dx, xlim=c(0,750), geom="density", fill="red", xlab="Average depth per sample", ylab="% targets") + geom_vline(xintercept=20, linetype="dashed") + scale_fill_discrete(guide = "none")
+
+
+#qplot(FILTER, data=subset(dx, FILTER != "PASS")) + theme(axis.text.x = element_text(angle=90, hjust=1))
 
 
 #Downsampled datasets
